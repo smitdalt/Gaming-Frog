@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Gaming Frog</title>
+  <meta name="description" content="A simple HTML5 Template for new projects.">
+  <meta name="author" content="SitePoint">
+
+  <meta property="og:title" content="Gaming Frog">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://gamingfrog.xyz">
+  <meta property="og:description" content="Gaming Frog">
+  <meta property="og:image" content="image.png">
+
+  <link rel="icon" href="/favicon.ico">
+  <script>
+        function frogePress() {
+            let presElem = document.getElementById("presfroge");
+            let frogPresses = parseInt(presElem.innerText);
+            frogPresses++;
+            presElem.innerText = frogPresses.toString();
+        }
+  </script>
+</head>
+
+<body style="background-color: lightgray;">
+    <h1 style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 128px; text-align: center;">
+        <span style="color: red;">G</span><span style="color: blue;">A</span><a href="index.html"><span style="color: green;">M</span></a><span style="color: yellow;">I</span><span style="color: purple;">N</span><span style="color: aqua;">G</span> <span style="color: yellow;">F</span><span style="color: navy;">R</span><span style="color: violet;">O</span><span style="color: orange;">G</span>
+    </h1>
+    <img src="assets/butonfrog.jpg" onclick="frogePress()"/>
+    <h2>pres froge</h2>
+    <h3 id="presfroge">0</h3>
+</body>
+</html>
