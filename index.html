@@ -18,6 +18,27 @@
   <link rel="icon" href="/favicon.ico">
 </head>
 
+<script>
+ let frogescare = function() {
+  const mySound = new Audio('assets/frog-laughing-meme.mp3');
+  mySound.volume = 0.1;
+
+  // Play the sound.
+  mySound.play();
+
+  document.getElementById("jumpscare-frog").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("jumpscare-frog").style.display = "none";
+  }, 5000);
+ }
+
+  window.onscroll = function() {
+    if((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+      frogescare();
+    }
+  };
+</script>
+
 <body style="background-color: lightgray;">
     <h1 style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 128px; text-align: center;">
         <span style="color: red;">G</span><a style="text-decoration: none;" href="frog.html"><span style="color: blue;">A</span></a><span style="color: green;">M</span><span style="color: yellow;">I</span><span style="color: purple;">N</span><span style="color: aqua;">G</span> <span style="color: yellow;">F</span><span style="color: navy;">R</span><span style="color: violet;">O</span><span style="color: orange;">G</span>
@@ -30,5 +51,6 @@
     <img src="assets/gamin frog.jpg"/>
     <img src="assets/amogus.jpg"/>
     <img src="assets/iheartgay.jpg"/>
+    <img id="jumpscare-frog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;" src="assets/frog-jumping.gif"/>
 </body>
 </html>
