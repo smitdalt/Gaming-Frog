@@ -19,38 +19,83 @@
 </head>
 
 <script>
- let frogescare = function() {
-  const mySound = new Audio('assets/frog-laughing-meme.mp3');
-  mySound.volume = 0.1;
+  setInterval(() => {
+    let cursor = document.getElementById("cursor");
+    if(cursor.innerText === '_') {
+      cursor.innerText = ' ';
+    } else {
+      cursor.innerText = '_';
+    }
+  }, 500);
 
-  // Play the sound.
-  mySound.play();
+  let onCooldown = false;
 
-  document.getElementById("jumpscare-frog").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("jumpscare-frog").style.display = "none";
-  }, 5000);
- }
+  function frogescare() {
+    const mySound = new Audio('assets/frog-laughing-meme.mp3');
+    mySound.volume = 0.1;
+
+    // Play the sound.
+    mySound.play();
+
+    document.getElementById("jumpscare-frog").style.display = "block";
+    setTimeout(() => {
+      document.getElementById("jumpscare-frog").style.display = "none";
+    }, 5000);
+  }
+
+  function isKeyAlphaNumeric(code) {
+    if (!(code > 47 && code < 58) && // numeric (0-9)
+        !(code > 64 && code < 91) && // upper alpha (A-Z)
+        !(code > 96 && code < 123)) { // lower alpha (a-z)
+      return false;
+    }
+    return true;
+  }
 
   window.onscroll = function() {
-    if((window.innerHeight + window.scrollY) >= document.body.scrollHeight) {
+    if((window.innerHeight + window.scrollY) >= document.body.scrollHeight && !onCooldown) {
+      onCooldown = true;
       frogescare();
+      setTimeout(() => {
+        onCooldown = false;
+      }, 5001);
     }
   };
+
+  window.onkeyup = function(e) {
+    var passwordEl = document.getElementById('password-text');
+
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      if(!passwordEl.innerText) {
+        return;
+      }
+      document.getElementById("terminal").style.display = 'none';
+      document.getElementById("site").style.display = 'block';
+      document.getElementById("body").style.backgroundColor = 'lightgrey';
+    } else if(isKeyAlphaNumeric(e.keyCode)) {
+      passwordEl.innerText += e.key;
+    }
+  }
 </script>
 
-<body style="background-color: lightgray;">
-    <h1 style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 128px; text-align: center;">
-        <span style="color: red;">G</span><a style="text-decoration: none;" href="frog.html"><span style="color: blue;">A</span></a><span style="color: green;">M</span><span style="color: yellow;">I</span><span style="color: purple;">N</span><span style="color: aqua;">G</span> <span style="color: yellow;">F</span><span style="color: navy;">R</span><span style="color: violet;">O</span><span style="color: orange;">G</span>
-    </h1>
-    <img src="assets/mommyfrog.jpg"/>
-    <img src="assets/gamingfrog.jpg"/>
-    <img src="assets/bufffrog.jpg"/>
-    <img src="assets/frowogo.jpg"/>
-    <img src="assets/missfroggy.jpg"/>
-    <img src="assets/gamin frog.jpg"/>
-    <img src="assets/amogus.jpg"/>
-    <img src="assets/iheartgay.jpg"/>
-    <img id="jumpscare-frog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;" src="assets/frog-jumping.gif"/>
+<body id="body" style="background-color: black;">
+    <div id="terminal">
+      <span style="color: green;">Please enter the top secret gaming frog password to enter: </span><span style="color: green;" id="password-text"></span><span style="color: green;" id="cursor"></span>
+    </div>
+
+    <div id="site" style="display: none;">
+      <h1 style="font-family: 'Comic Sans MS', 'Comic Sans', cursive; font-size: 128px; text-align: center;">
+          <span style="color: red;">G</span><a style="text-decoration: none;" href="frog.html"><span style="color: blue;">A</span></a><span style="color: green;">M</span><span style="color: yellow;">I</span><span style="color: purple;">N</span><span style="color: aqua;">G</span> <span style="color: yellow;">F</span><span style="color: navy;">R</span><span style="color: violet;">O</span><span style="color: orange;">G</span>
+      </h1>
+      <img src="assets/mommyfrog.jpg"/>
+      <img src="assets/gamingfrog.jpg"/>
+      <img src="assets/bufffrog.jpg"/>
+      <img src="assets/frowogo.jpg"/>
+      <img src="assets/missfroggy.jpg"/>
+      <img src="assets/gamin frog.jpg"/>
+      <img src="assets/amogus.jpg"/>
+      <img src="assets/iheartgay.jpg"/>
+      <img id="jumpscare-frog" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;" src="assets/frog-jumping.gif"/>
+    </div>
 </body>
 </html>
